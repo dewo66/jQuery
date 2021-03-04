@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <a href="https://www.w3schools.com/jquery/jquery_ref_selectors.asp">JQuery</a>
+    <p id="p1">ve</p>
+    <button onclick="urlGoster()">Linki Göster</button>
+    <button onclick="urlDeğiştir()">Linki Değiştir</button>
+    <button onclick="fonksiyonuDegis()">Başla fonksiyon atamasını sağlar</button>
+    <button onclick="urlSil()">Url den kurtul</button>
+    <div class="div4"></div>
+    <button onclick="kirmiziEkle()">kirmiziEkle</button>
+    <button onclick="kirimiziSil()">kirimiziSil</button>
+    <button onclick="yesilEkle()">yesilEkle</button>
+    <button onclick="yesilSil()">yesilSil</button>
+    <button onclick="kirmiziToggle()">kirmiziToggle</button>
+    <button onclick="yesilToggle()">yesilToggle</button>
+    <button onclick="arkaPlanRenginiDegistir()">Arka Plan rengini jquery ile değiştirme</button>
+    <button onclick="ebeveyneUlaş()">EbeVayne</button>
+    <button onclick="sil()">Li den kurtul</button>
+    <ul></ul>
+    <li>lili1</li>
+    <li>lili2</li>
+    <li>lili3</li>
+    <li>lili4<p id="parent">Ebeveyne ulaş</p></li>
+            </ul>
+        <div class="div4 event"></div>
+        <div class="yeniEvent div4"></div>
+        <h3>İsmail</h3>
+        <h3>Akçelep</h3>
+        <h3>Denemeleri</h3>
+        <div class="Lorem">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae, itaque.</div>
+        <div class="animate"></div>
+        <script>
+            function urlGoster() {
+                var url = $('a').attr("href");
+                $("p").html(url);
+            }
+            function urlDeğiştir() {
+                $('a').attr("href", "https://github.com/");
+            }
+            function fonksiyonuDegis() {
+                $("button:first").attr("onclick", "urlDeğiştir()");
+                $("button:nth-last-child(3)").attr("onclick", "urlGoster()");
+                console.log("url değiştirildi")
+            }
+            function urlSil() {
+                $("a:first").removeAttr("href");
+            }
+            $("#p1").prepend("başa ");
+            $("#p1").append(" sona ekledik");
+            var yeniParagraf = $("<p></p>").text("Yeni bir paragraf yazısı ve etiketi");
+            $("#p1").after(yeniParagraf);
+            function kirmiziEkle() {
+                $(".div4").addClass("red");
+            }
+            function kirimiziSil() {
+                $(".div4").removeClass("red");
+            }
+            function yesilEkle() {
+                $(".div4").addClass("green");
+            }
+            function yesilSil() {
+                $(".div4").removeClass("green");
+            }
+            function kirmiziToggle() {
+                $(".div4").toggleClass("red");
+            }
+            function yesilToggle() {
+                $(".div4").toggleClass("green");
+            }
+
+            function arkaPlanRenginiDegistir() {
+                //$(".div4").css("background","purple");
+                //birden fazla değişiklik yapmak istiyorsak
+                $(".div4").css({
+                    "background": "purple",
+                    "border": "10px solid black",
+                    "padding": "101px",
+
+                });
+                $(".div4").width("503px");
+                $(".div4").outerHeight("100px");
+
+            }
+            function ebeveyneUlaş() {
+                $("#parent").parents().eq(1).css("background", "red");
+            }
+            function sil() {
+                $("li").eq(2).remove();
+            }
+
+            $(".event").click(function (event) {
+                $(".event").text(event.pageX + " " + event.pageY);
+
+            });
+
+            $(".yeniEvent").click({ isim: "Kaan", yas: 25 }, function (event) {
+                $(".yeniEvent").text(event.data.isim + "" + event.data.yas)
+            })
+
+            for (var i = 0; i < 3; i++) {
+                $("h3").eq(i).click({ i: i }, function (params) {
+                    $(".Lorem").text($("h3").eq(params.data.i).html());
+                });
+            }
+            $(function(){
+                var fonk = $(".animate");
+                fonk.animate({opacity:1});
+                fonk.animate({
+                    height:"+=100px",
+                    width:"+=100px",
+                    top:"+=100px",
+                    borderRadius: "+=100px",
+                },1000)
+                fonk.animate({
+                    height:"-=100px",
+                    width:"-=100px",
+                    top:"+=100px",
+                    borderRadius: "-=110px"
+                },1000)
+                fonk.animate({
+                    height:"+=500px",
+                    width:"+=500px",
+                    top:"-=100px",
+                    borderRadius: "+=100px",
+                    opacity: 0.25
+
+                },1000)
+                fonk.animate({
+                    height:"-=500px",
+                    width:"-=800px",
+                    top:"-=500px",
+                    borderRadius: "-=100px",
+                    opacity: 0,
+                },1000)
+            })
+            
+            
+
+        </script>
+</body>
+<style>
+    .div4 {
+        height: 250px;
+        width: 250px;
+        background: turquoise;
+        border-style: double;
+        border-color: black;
+    }
+
+    .green {
+        background: green;
+    }
+
+    .red {
+        background: red;
+    }
+    .animate{
+        height:100px;
+        width:100px;
+        left: 100px;
+        top: 100px;
+        background:red;
+        opacity: 0;
+        position: fixed;
+        border-radius: 20px;
+                    
+    }
+    .animate:hover{
+        background: yellow;
+    }
+
+</style>
+
+</html>
